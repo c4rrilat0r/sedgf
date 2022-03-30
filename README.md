@@ -47,7 +47,7 @@ python3.7 openredirex.py -l urls.txt -p payloads.txt --keyword FUZZ
 Another example if you wanna replace directly the payload, you can use the option -new-value (don't forget escape characters like '/','[',']'):
 
 ```
-echo "testphp.vulnweb.com" | gau | gf redirect | sedgf -payload https:\/\/myinteract.sh redirect | rush 'curl -L -k -s -v {}' > /dev/null  
+echo "testphp.vulnweb.com" | gau | gf redirect | sedgf -payload "https:\/\/myinteract.sh" redirect | rush 'curl -L -k -s -v {}' > /dev/null  
 
 ```
 
