@@ -26,11 +26,8 @@ func main() {
 	var dumpMode bool
 	flag.BoolVar(&dumpMode, "dump", false, "prints the sed command rather than executing it")
 
-	var replaceValue string
-	flag.StringVar(&replaceValue, "replace","" ,"value to replace for FUZZ. By default search empty params")
-
-	var newValue string
-	flag.StringVar(&newValue, "new-value","FUZZ" ,"new value to replace.")
+	var payload string
+	flag.StringVar(&payload, "payload","FUZZ" ,"payload to replace in params")
 
 	flag.Parse()
 
@@ -83,7 +80,7 @@ func main() {
 
 		pat.Pattern =  ""
 		for _,s:= range pat.Patterns{
-			pat.Pattern +=  "s/("+string(s)+")"+ replaceValue +"/\\1"+newValue+"/gi; "
+			pat.Pattern +=  "s/("+string(s)+")[^&]*/\\1"+payload+"/gi; "
 		}
 	}
 
